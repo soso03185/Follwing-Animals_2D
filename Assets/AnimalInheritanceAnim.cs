@@ -19,7 +19,6 @@ public class AnimalInheritanceAnim : MonoBehaviour
         }
     }
   
-
     void Awake()
     {
         _anim = GetComponent<Animator>();
@@ -28,37 +27,20 @@ public class AnimalInheritanceAnim : MonoBehaviour
     void Update()
     {     
         UpdateController();
-        Flip();
-
-
-     //       this.transform.localScale = new Vector2(0.5f, 0.5f);
     }
-    void Flip()
-    {
-        Vector2 _thisScaleVec = transform.localScale;
 
-        _thisScaleVec.x *= -1;
-
-        transform.localScale = _thisScaleVec;
-    }
     void UpdateController()
     {
         switch (State)
         {
-            case AnimalState.Idle:
-                _anim.Play("idle");
-                break;
             case AnimalState.Walk:
                 _anim.Play("walk");
                 break;
+            case AnimalState.WalkRight:
+                _anim.Play("walk_right");
+                break;
             case AnimalState.Jump:
                 _anim.Play("jump");
-                break;
-            case AnimalState.Sleep:
-                _anim.Play("sleep");
-                break;
-            case AnimalState.Eat:
-                _anim.Play("eat");
                 break;
         }
     }

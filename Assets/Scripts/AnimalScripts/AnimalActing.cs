@@ -8,6 +8,7 @@ public class AnimalActing : MonoBehaviour
     {
         Idle,
         Walk,
+        WalkRight,
         Jump,
         Bark,
         Eat,
