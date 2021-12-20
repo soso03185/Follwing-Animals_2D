@@ -35,6 +35,7 @@ public class AnimalInheritance : MonoBehaviour
     {
         this.transform.position = TargetRecorder.Positions[Offset];
     }
+
     public virtual void Eat(float intensity)
     {
         EatFeedback?.PlayFeedbacks(this.transform.position, intensity);

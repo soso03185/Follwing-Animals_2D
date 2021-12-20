@@ -5,11 +5,11 @@ using static AnimalActing;
 
 public class AnimalFreeAnim : MonoBehaviour
 {
-    protected Animator _anim;
-    protected AnimalState _state = AnimalState.Idle;
+    Animator _anim;
+    AnimalState _state = AnimalState.Idle;
     private int _ranStateIndex = -1;
 
-    protected AnimalState State
+    private AnimalState State
     {
         get { return _state; }
         set
@@ -21,7 +21,7 @@ public class AnimalFreeAnim : MonoBehaviour
         }
     }
 
-    protected virtual void Awake()
+    void Awake()
     {
         _anim = GetComponent<Animator>();
     }
@@ -45,12 +45,12 @@ public class AnimalFreeAnim : MonoBehaviour
 
     }
 
-    protected void Update()
+    void Update()
     {
         UpdateController();
     }
 
-    protected void UpdateController()
+    void UpdateController()
     {
         switch (State)
         {
