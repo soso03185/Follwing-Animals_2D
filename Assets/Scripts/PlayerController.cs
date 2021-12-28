@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Bindings")]
     public Text PointsCounter;
+    public Text HP;
 
     [Header("Feedbacks")]
     public MMFeedbacks TurnFeedback;
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [MMReadOnly]
     public int AnimalPoints = 0;
+    [MMReadOnly]
+    public int PlayerHp = 3;
     [MMReadOnly]
     public float _speed;
     [MMReadOnly]
@@ -50,6 +53,7 @@ public class PlayerController : MonoBehaviour
         AnimalPoints = 0;
         _recorder = this.gameObject.GetComponent<MMPositionRecorder>();
         PointsCounter.text = "0";
+        HP.text = "HP : " + PlayerHp.ToString();
         _animalPrefabs = new List<AnimalInheritance>();
     }
 
@@ -96,7 +100,7 @@ public class PlayerController : MonoBehaviour
         AnimalInheritance part = Instantiate(AnimalInheritance_Prefab);
         part.transform.position = this.transform.position;
         part.TargetRecorder = _recorder;
-        part.Offset = ((AnimalPoints) * BodyPartsOffset) + BodyPartsOffset + 1;
+        part.Offset = ((AnimalPoints) * BodyPartsOffset) + BodyPartsOffset + 5;
         part.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         part.Index = _animalPrefabs.Count;
         part.name = "AnimalPrefabs_" + part.Index;
@@ -109,11 +113,15 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-
+     
         _lastLostPart = Time.time;
         LoseFeedback?.PlayFeedbacks(part.transform.position);
         Destroy(_animalPrefabs[_animalPrefabs.Count - 1].gameObject);
         _animalPrefabs.RemoveAt(_animalPrefabs.Count - 1);
+
+        PlayerHp--;
+        HP.text = "HP : " + PlayerHp.ToString();
+
         AnimalPoints--;
         PointsCounter.text = AnimalPoints.ToString();
     }

@@ -12,7 +12,7 @@ public class AnimalInheritance : MonoBehaviour
     public MMFeedbacks EatFeedback;
     /// a feedback to play when this part appears
     public MMFeedbacks NewFeedback;
-    public int Offset = 20;
+    public int Offset = 25;
     public int Index = 0;
 
     protected PlayerController _player;
